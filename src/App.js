@@ -19,7 +19,19 @@ function App() {
   const [waterfront, setWaterfront] = useState('Sunset');
   const [castle, setCastle] = useState('Mysterious');
   
-  const [sloganlist, setSloganlist] = useState('');
+  const [sloganlist, setSloganlist] = useState([]);
+  const [sloganform, setSloganform] = useState('');
+
+  const [cityName, setCityName] = useState('');
+
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setSloganlist([...sloganlist, sloganform]);
+    setSloganform('');
+  }
   return (
     <div className="App">
       {/* here, the City component takes in skylineId, waterfrontId, castleId as props. It'll use those ids to render pictures correctly. */}
@@ -38,6 +50,8 @@ function App() {
           <WaterfrontDropdown setWaterfront={setWaterfront} />
           <SkylineDropdown setSkyline={setSkyline} />
           <CastleDropdown setCastle={setCastle} />
+          <CityNameInput setCityName={setCityName} />
+          <SloganForm handleSubmit={handleSubmit} setSloganform={setSloganform} sloganform={sloganform} />
         </section>
         {/* here, the SloganForm component takes in the setSlogans state handler function and the slogans array that live in state */}
         {/* here, the SloganList component takes the array of slogans that lives in state */}
